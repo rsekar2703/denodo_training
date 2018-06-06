@@ -1,0 +1,27 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE LISTENER JMS jms_regenerate_statistics 
+    VENDOR ACTIVEMQ
+    DESTINATION = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.DESTINATION}'
+    REPLYTO = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.REPLYTO}'
+    QUEUE
+    OUTPUT = XML
+    USER = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.USER}'
+    PASSWORD = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.PASSWORD}' ${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.PASSWORD.ENCRYPTED}
+    VDPUSER = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.VDPUSER}'
+    MESSAGESCONTAINVARIABLE = TRUE
+    QUERY = 'SELECT resultname FROM catalog_elements(''@JMSEXPRESSION'',''*'',NULL,NULL,NULL,NULL,NULL,NULL,NULL) as cat
+INNER JOIN generate_stats(''denodo_training'',null) g
+ON cat.resultname = g.viewName
+where cat.resulttype = ''view'' and cat.resultsubtype = ''base'''
+    ENABLED = FALSE
+    PROPERTIES (
+        'connectionFactoryNames' = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.PROPERTIES.connectionFactoryNames}', 
+        'java.naming.factory.initial' = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.PROPERTIES.java.naming.factory.initial}', 
+        'transport.jms.ConnectionFactoryJNDIName' = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.PROPERTIES.transport.jms.ConnectionFactoryJNDIName}', 
+        'java.naming.provider.url' = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.PROPERTIES.java.naming.provider.url}', 
+        'connection.JmsQueueConnectionFactory.brokerURL' = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.PROPERTIES.connection.JmsQueueConnectionFactory.brokerURL}', 
+        'queue.denodo_queue_training' = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.PROPERTIES.queue.denodo_queue_training}', 
+        'queue.denodo_response_training' = '${databases.denodo_training.folder.08 - jms listeners.listeners.jms_regenerate_statistics.PROPERTIES.queue.denodo_response_training}')
+
+    FOLDER = '/08 - jms listeners';
+

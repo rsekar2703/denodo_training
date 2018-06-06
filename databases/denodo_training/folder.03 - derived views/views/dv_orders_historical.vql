@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_orders_historical FOLDER = '/03 - derived views' AS SELECT bv_ho_order_item.id AS id, bv_ho_order_item.order_id AS order_id, bv_ho_order_item.product_id AS product_id, bv_ho_orders.customer_code AS customer_code, bv_ho_orders.status AS status, bv_ho_orders.dateplaced AS dateplaced, bv_ho_orders.datedelivered AS datedelivered, bv_ho_orders.dateclosed AS dateclosed FROM bv_ho_orders AS bv_ho_orders INNER JOIN bv_ho_order_item AS bv_ho_order_item ON bv_ho_orders.id = bv_ho_order_item.order_id  WHERE bv_ho_orders.dateplaced < to_date('MM/dd/yyyy HH:mm:ss', '01/01/2015 00:00:00');
+
+ALTER VIEW dv_orders_historical
+ LAYOUT (bv_ho_orders = [86, 86, 200, 146], bv_ho_order_item = [300, 111, 200, 86]);
+

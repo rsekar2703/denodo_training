@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATASOURCE CUSTOM ds_salesforce
+    FOLDER = '/01 - data sources'
+    CLASSNAME='com.denodo.connect.salesforce.rest.wrapper.SalesforceRestWrapper'
+    JARS 'denodo-salesforce-rest-wrapper-6.0';
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_orders FOLDER = '/03 - derived views' AS SELECT bv_wo_order_item.id AS id, bv_wo_order_item.order_id AS order_id, bv_wo_order_item.product_id AS product_id, bv_wo_orders.customer_code AS customer_code, bv_wo_orders.status AS status, bv_wo_orders.date_placed AS date_placed, bv_wo_orders.date_delivered AS date_delivered, bv_wo_orders.date_closed AS date_closed FROM bv_wo_orders AS bv_wo_orders INNER JOIN bv_wo_order_item AS bv_wo_order_item ON bv_wo_orders.id = bv_wo_order_item.order_id  WHERE bv_wo_orders.date_placed > to_date('MM/dd/yyyy HH:mm:ss', '01/01/2015 00:00:00');
+
+ALTER VIEW dv_orders
+ LAYOUT (bv_wo_orders = [60, 100, 200, 146], bv_wo_order_item = [322, 118, 200, 86]);
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_internet_incident_router FOLDER = '/02 - base views' AS SELECT bv_internet_incident.summary AS summary, bv_internet_incident.ttime AS ttime, bv_internet_incident.customer_code AS customer_code, bv_internet_incident.status AS status FROM bv_internet_incident;
+
+ALTER VIEW dv_internet_incident_router
+ LAYOUT (bv_internet_incident = [20, 20, 530, 166]);
+

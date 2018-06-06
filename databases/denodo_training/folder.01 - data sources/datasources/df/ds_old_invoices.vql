@@ -1,0 +1,10 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF ds_old_invoices
+    FOLDER = '/01 - data sources'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.denodo_training.folder.01 - data sources.datasources.df.ds_old_invoices.ROUTE.HTTP.URL}'
+    AUTHENTICATION OFF
+    PROXY OFF
+    COLUMNDELIMITER = ','
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = TRUE;
+

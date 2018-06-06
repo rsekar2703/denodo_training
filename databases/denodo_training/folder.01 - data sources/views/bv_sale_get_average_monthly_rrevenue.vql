@@ -1,0 +1,45 @@
+﻿CREATE OR REPLACE WRAPPER WS bv_sale_get_average_monthly_rrevenue
+    FOLDER = '/01 - data sources'
+    DATASOURCENAME=ds_sale
+    SERVICENAME='RevenueProviderService'
+    PORTNAME='RevenueProvider'
+    OPERATIONNAME='getAverageMonthlyRevenue'
+    INPUTMESSAGE='getAverageMonthlyRevenueRequest'
+    OUTPUTMESSAGE='getAverageMonthlyRevenueResponse'
+    OUTPUTSCHEMA (
+    return = '$$$$': REGISTER OF (
+        arrayrevenue = 'arrayRevenue': ARRAY OF (
+            revenue = 'Revenue': REGISTER OF (
+                code='code',
+                revenue='revenue'
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE getaveragemonthlyrevenue_return_arrayrevenue_revenue AS REGISTER OF (code:text, revenue:float);
+
+CREATE OR REPLACE TYPE getaveragemonthlyrevenue_return_arrayrevenue AS ARRAY OF getaveragemonthlyrevenue_return_arrayrevenue_revenue;
+
+CREATE OR REPLACE TYPE getaveragemonthlyrevenue_return AS REGISTER OF (arrayrevenue:getaveragemonthlyrevenue_return_arrayrevenue);
+
+CREATE OR REPLACE TABLE bv_sale_get_average_monthly_rrevenue I18N us_pst (
+        return:getaveragemonthlyrevenue_return
+    )
+    FOLDER = '/01 - data sources'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_sale_get_average_monthly_rrevenue(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD return NOS ZERO ()
+             ADD return.arrayrevenue NOS ZERO ()
+             ADD return.arrayrevenue NOS ZERO ()
+             ADD return.arrayrevenue.code NOS ZERO ()
+             ADD return.arrayrevenue.revenue NOS ZERO ()
+        )
+        OUTPUTLIST (return
+        )
+        WRAPPER (ws bv_sale_get_average_monthly_rrevenue)
+    );
+

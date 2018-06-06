@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_employee_sales FOLDER = '/03 - derived views' AS SELECT bv_sales_all.employeeid AS employeeid, count(*) AS total_sales, sum(cast('decimal', bv_sales_all.totalprice)) AS total_price, start_date, end_date FROM bv_sales_all WHERE to_date('yyyy-MM-dd''T''HH:mm:ss', saledate) between start_date AND end_date GROUP BY bv_sales_all.employeeid HAVING count(*) > 1 USING PARAMETERS ( start_date : date to_date('yyyy', '1970'), end_date : date now());
+
+ALTER VIEW dv_employee_sales
+ LAYOUT (bv_sales_all = [20, 20, 200, 206]);
+

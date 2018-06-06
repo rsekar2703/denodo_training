@@ -1,0 +1,29 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC status_code
+    FOLDER = '/01 - data sources'
+    DATASOURCENAME=ds_phone
+    SCHEMANAME='${databases.denodo_training.folder.01 - data sources.views.jdbc.status_code.SCHEMANAME}' 
+    RELATIONNAME='status_code' ESCAPE
+    OUTPUTSCHEMA (
+        code_id = 'code_id' :'java.math.BigDecimal' (OPT) (sourcetyperadix='10', sourcetypename='NUMBER', sourcetypeid='3', sourcetypesize='22')  ESCAPE NOT NULL SORTABLE,
+        code_description = 'code_description' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='2500')  ESCAPE SORTABLE
+    );
+
+CREATE OR REPLACE TABLE status_code I18N us_pst (
+        code_id:decimal (sourcetyperadix = '10', sourcetypesize = '22', sourcetypeid = '3'), 
+        code_description:text (sourcetyperadix = '10', sourcetypesize = '2500', sourcetypeid = '12')
+    )
+    FOLDER = '/01 - data sources'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD status_code(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD code_id (any) OPT ANY
+             ADD code_description (any) OPT ANY
+        )
+        OUTPUTLIST (code_description, code_id
+        )
+        WRAPPER (jdbc status_code)
+    );
+

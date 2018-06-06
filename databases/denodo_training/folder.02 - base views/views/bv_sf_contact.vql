@@ -1,0 +1,201 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM bv_sf_contact
+    FOLDER = '/02 - base views'
+    DATASOURCENAME=ds_salesforce
+    PARAMETERS (
+      'ENTITY' = 'Contact',
+      'BASE_URL' = 'https://eu6.salesforce.com/',
+      'SANDBOX' = false,
+      'CLIENT_ID' = '3MVG98_Psg5cppyYfVl16AyFcei1MRMqxfuF64DxOi3piwlb2HT_GR7YDOfb6SYa5ANdaDXAIziuzXjuaz.4.',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861D4x38iD8mDKdSB4uhxvKH9BNygn4pCQcWz0m06rwkP7V8XVOPAuGDTFQ_uJfOJdLgV4S9sBpaC8oURSz'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) SORTABLE,
+        isdeleted = 'IsDeleted' : 'java.lang.Boolean' (OPT) SORTABLE,
+        masterrecordid = 'MasterRecordId' : 'java.lang.String' (OPT) SORTABLE,
+        accountid = 'AccountId' : 'java.lang.String' (OPT) SORTABLE,
+        lastname = 'LastName' : 'java.lang.String' (OPT) SORTABLE,
+        firstname = 'FirstName' : 'java.lang.String' (OPT) SORTABLE,
+        salutation = 'Salutation' : 'java.lang.String' (OPT) SORTABLE,
+        name = 'Name' : 'java.lang.String' (OPT) SORTABLE,
+        otherstreet = 'OtherStreet' : 'java.lang.String' (OPT) SORTABLE,
+        othercity = 'OtherCity' : 'java.lang.String' (OPT) SORTABLE,
+        otherstate = 'OtherState' : 'java.lang.String' (OPT) SORTABLE,
+        otherpostalcode = 'OtherPostalCode' : 'java.lang.String' (OPT) SORTABLE,
+        othercountry = 'OtherCountry' : 'java.lang.String' (OPT) SORTABLE,
+        otherlatitude = 'OtherLatitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        otherlongitude = 'OtherLongitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        otheraddress = 'OtherAddress' : 'java.lang.String' (OPT) NOT SORTABLE,
+        mailingstreet = 'MailingStreet' : 'java.lang.String' (OPT) SORTABLE,
+        mailingcity = 'MailingCity' : 'java.lang.String' (OPT) SORTABLE,
+        mailingstate = 'MailingState' : 'java.lang.String' (OPT) SORTABLE,
+        mailingpostalcode = 'MailingPostalCode' : 'java.lang.String' (OPT) SORTABLE,
+        mailingcountry = 'MailingCountry' : 'java.lang.String' (OPT) SORTABLE,
+        mailinglatitude = 'MailingLatitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        mailinglongitude = 'MailingLongitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        mailingaddress = 'MailingAddress' : 'java.lang.String' (OPT) NOT SORTABLE,
+        phone = 'Phone' : 'java.lang.String' (OPT) SORTABLE,
+        fax = 'Fax' : 'java.lang.String' (OPT) SORTABLE,
+        mobilephone = 'MobilePhone' : 'java.lang.String' (OPT) SORTABLE,
+        homephone = 'HomePhone' : 'java.lang.String' (OPT) SORTABLE,
+        otherphone = 'OtherPhone' : 'java.lang.String' (OPT) SORTABLE,
+        assistantphone = 'AssistantPhone' : 'java.lang.String' (OPT) SORTABLE,
+        reportstoid = 'ReportsToId' : 'java.lang.String' (OPT) SORTABLE,
+        email = 'Email' : 'java.lang.String' (OPT) SORTABLE,
+        title = 'Title' : 'java.lang.String' (OPT) SORTABLE,
+        department = 'Department' : 'java.lang.String' (OPT) SORTABLE,
+        assistantname = 'AssistantName' : 'java.lang.String' (OPT) SORTABLE,
+        leadsource = 'LeadSource' : 'java.lang.String' (OPT) SORTABLE,
+        birthdate = 'Birthdate' : 'java.util.Date' (OPT) SORTABLE,
+        description = 'Description' : 'java.lang.String' NOT SORTABLE,
+        ownerid = 'OwnerId' : 'java.lang.String' (OPT) SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) SORTABLE,
+        lastactivitydate = 'LastActivityDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastcurequestdate = 'LastCURequestDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastcuupdatedate = 'LastCUUpdateDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastvieweddate = 'LastViewedDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastreferenceddate = 'LastReferencedDate' : 'java.util.Date' (OPT) SORTABLE,
+        emailbouncedreason = 'EmailBouncedReason' : 'java.lang.String' (OPT) SORTABLE,
+        emailbounceddate = 'EmailBouncedDate' : 'java.util.Date' (OPT) SORTABLE,
+        isemailbounced = 'IsEmailBounced' : 'java.lang.Boolean' (OPT) SORTABLE,
+        photourl = 'PhotoUrl' : 'java.lang.String' (OPT) SORTABLE,
+        jigsaw = 'Jigsaw' : 'java.lang.String' (OPT) SORTABLE,
+        jigsawcontactid = 'JigsawContactId' : 'java.lang.String' (OPT) SORTABLE,
+        cleanstatus = 'CleanStatus' : 'java.lang.String' (OPT) SORTABLE,
+        level__c = 'Level__c' : 'java.lang.String' (OPT) SORTABLE,
+        languages__c = 'Languages__c' : 'java.lang.String' (OPT) SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_sf_contact I18N us_pst (
+        id:text, 
+        isdeleted:boolean, 
+        masterrecordid:text, 
+        accountid:text, 
+        lastname:text, 
+        firstname:text, 
+        salutation:text, 
+        name:text, 
+        otherstreet:text, 
+        othercity:text, 
+        otherstate:text, 
+        otherpostalcode:text, 
+        othercountry:text, 
+        otherlatitude:decimal, 
+        otherlongitude:decimal, 
+        otheraddress:text, 
+        mailingstreet:text, 
+        mailingcity:text, 
+        mailingstate:text, 
+        mailingpostalcode:text, 
+        mailingcountry:text, 
+        mailinglatitude:decimal, 
+        mailinglongitude:decimal, 
+        mailingaddress:text, 
+        phone:text, 
+        fax:text, 
+        mobilephone:text, 
+        homephone:text, 
+        otherphone:text, 
+        assistantphone:text, 
+        reportstoid:text, 
+        email:text, 
+        title:text, 
+        department:text, 
+        assistantname:text, 
+        leadsource:text, 
+        birthdate:date, 
+        description:text, 
+        ownerid:text, 
+        createddate:date, 
+        createdbyid:text, 
+        lastmodifieddate:date, 
+        lastmodifiedbyid:text, 
+        systemmodstamp:date, 
+        lastactivitydate:date, 
+        lastcurequestdate:date, 
+        lastcuupdatedate:date, 
+        lastvieweddate:date, 
+        lastreferenceddate:date, 
+        emailbouncedreason:text, 
+        emailbounceddate:date, 
+        isemailbounced:boolean, 
+        photourl:text, 
+        jigsaw:text, 
+        jigsawcontactid:text, 
+        cleanstatus:text, 
+        level__c:text, 
+        languages__c:text
+    )
+    FOLDER = '/02 - base views'
+    CACHE FULL
+    TIMETOLIVEINCACHE NOEXPIRE
+    ADD SEARCHMETHOD bv_sf_contact(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD isdeleted (any) OPT ANY
+             ADD masterrecordid (any) OPT ANY
+             ADD accountid (any) OPT ANY
+             ADD lastname (any) OPT ANY
+             ADD firstname (any) OPT ANY
+             ADD salutation (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD otherstreet (any) OPT ANY
+             ADD othercity (any) OPT ANY
+             ADD otherstate (any) OPT ANY
+             ADD otherpostalcode (any) OPT ANY
+             ADD othercountry (any) OPT ANY
+             ADD otherlatitude (any) OPT ANY
+             ADD otherlongitude (any) OPT ANY
+             ADD otheraddress (any) OPT ANY
+             ADD mailingstreet (any) OPT ANY
+             ADD mailingcity (any) OPT ANY
+             ADD mailingstate (any) OPT ANY
+             ADD mailingpostalcode (any) OPT ANY
+             ADD mailingcountry (any) OPT ANY
+             ADD mailinglatitude (any) OPT ANY
+             ADD mailinglongitude (any) OPT ANY
+             ADD mailingaddress (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD fax (any) OPT ANY
+             ADD mobilephone (any) OPT ANY
+             ADD homephone (any) OPT ANY
+             ADD otherphone (any) OPT ANY
+             ADD assistantphone (any) OPT ANY
+             ADD reportstoid (any) OPT ANY
+             ADD email (any) OPT ANY
+             ADD title (any) OPT ANY
+             ADD department (any) OPT ANY
+             ADD assistantname (any) OPT ANY
+             ADD leadsource (any) OPT ANY
+             ADD birthdate (any) OPT ANY
+             ADD description NOS ZERO ()
+             ADD ownerid (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD lastactivitydate (any) OPT ANY
+             ADD lastcurequestdate (any) OPT ANY
+             ADD lastcuupdatedate (any) OPT ANY
+             ADD lastvieweddate (any) OPT ANY
+             ADD lastreferenceddate (any) OPT ANY
+             ADD emailbouncedreason (any) OPT ANY
+             ADD emailbounceddate (any) OPT ANY
+             ADD isemailbounced (any) OPT ANY
+             ADD photourl (any) OPT ANY
+             ADD jigsaw (any) OPT ANY
+             ADD jigsawcontactid (any) OPT ANY
+             ADD cleanstatus (any) OPT ANY
+             ADD level__c (any) OPT ANY
+             ADD languages__c (any) OPT ANY
+        )
+        OUTPUTLIST (accountid, assistantname, assistantphone, birthdate, cleanstatus, createdbyid, createddate, department, description, email, emailbounceddate, emailbouncedreason, fax, firstname, homephone, id, isdeleted, isemailbounced, jigsaw, jigsawcontactid, languages__c, lastactivitydate, lastcurequestdate, lastcuupdatedate, lastmodifiedbyid, lastmodifieddate, lastname, lastreferenceddate, lastvieweddate, leadsource, level__c, mailingaddress, mailingcity, mailingcountry, mailinglatitude, mailinglongitude, mailingpostalcode, mailingstate, mailingstreet, masterrecordid, mobilephone, name, otheraddress, othercity, othercountry, otherlatitude, otherlongitude, otherphone, otherpostalcode, otherstate, otherstreet, ownerid, phone, photourl, reportstoid, salutation, systemmodstamp, title
+        )
+        WRAPPER (custom bv_sf_contact)
+    );
+

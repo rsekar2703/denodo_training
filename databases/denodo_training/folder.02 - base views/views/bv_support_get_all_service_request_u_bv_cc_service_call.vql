@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW bv_support_get_all_service_request_u_bv_cc_service_call FOLDER = '/02 - base views' AS SELECT case_id, customer_code, interaction_ip, agent_id, interaction_date, interaction_phone FROM (SELECT customer_ip AS interaction_ip, customer_code, global_case_id AS case_id, sr_date, agent_id FROM bv_support_get_all_service_request UNION SELECT customer_code, date_ticket_issued AS interaction_date, case_id, caller_phone AS interaction_phone, agent_id, date_call_received AS sr_date FROM bv_cc_service_call);
+
+ALTER VIEW bv_support_get_all_service_request_u_bv_cc_service_call
+ LAYOUT (bv_support_get_all_service_request = [20, 20, 500, 366], bv_cc_service_call = [630, 10, 400, 246]);
+

@@ -1,0 +1,93 @@
+﻿CREATE OR REPLACE REST WEBSERVICE ws_rest_api
+    CONNECTION (
+        CHUNKSIZE = 1000
+        CHUNKTIMEOUT = 90000
+        QUERYTIMEOUT = 900000
+        POOLENABLED = true
+        POOLINITSIZE = 0
+        POOLMAXACTIVE = 30
+    )
+    DEFAULTREPRESENTATION = HTML
+    SUPPORTEDREPRESENTATIONS (HTML, XML, JSON)
+    AUTHENTICATION (BASIC VDP )
+    RESOURCES (
+        VIEW account FIELDS (
+            id : 'text', 
+            name : 'text', 
+            billingstreet : 'text', 
+            billingcity : 'text', 
+            billingstate : 'text', 
+            billingpostalcode : 'text', 
+            billingcountry : 'text', 
+            phone : 'text', 
+            annualrevenue : 'decimal', 
+            numberofemployees : 'long', 
+            ownerid : 'text', 
+            createddate : 'date', 
+            createdbyid : 'text', 
+            lastmodifieddate : 'date', 
+            lastmodifiedbyid : 'text', 
+            systemmodstamp : 'date'
+        ),
+        VIEW customer FIELDS (
+            customer_code_internal : 'text', 
+            id : 'decimal', 
+            complete_name : 'text', 
+            email : 'text', 
+            phone : 'text', 
+            main_address : 'text', 
+            main_postcode : 'int', 
+            main_country : 'text', 
+            registered_date : 'date'
+        ),
+        VIEW employee FIELDS (
+            employee_id : 'int', 
+            first_name : 'text', 
+            last_name : 'text', 
+            email : 'text', 
+            phone_number : 'text', 
+            hire_date : 'date', 
+            job_id : 'text', 
+            salary : 'decimal', 
+            commission_pct : 'decimal', 
+            manager_id : 'int', 
+            department_id : 'int'
+        ),
+        VIEW interaction FIELDS (
+            customer_code : 'text', 
+            agent_id : 'decimal', 
+            interaction_date : 'date', 
+            case_id : 'decimal', 
+            interaction_phone : 'text', 
+            interaction_ip : 'text'
+        ),
+        VIEW order FIELDS (
+            customer_code : 'text', 
+            product_id : 'decimal', 
+            id : 'decimal', 
+            status : 'text', 
+            date_placed : 'date', 
+            date_delivered : 'date', 
+            date_closed : 'date'
+        ),
+        VIEW product FIELDS (
+            productid : 'int', 
+            productname : 'text', 
+            productprice : 'float'
+        ),
+        VIEW sales FIELDS (
+            employeeid : 'text', 
+            productid : 'text', 
+            customerid : 'text', 
+            saleid : 'text', 
+            saledate : 'text', 
+            bundleamount : 'text', 
+            productsaleprice : 'text', 
+            totalprice : 'text'
+        )
+    )
+    ASSOCIATIONS ( a_customer_interaction, a_product_order, a_sales_product, a_account_sales, a_sales_employee, a_order_customer )
+    OPTIONS ( NULLVALUESASEMPTYXMLELEMENTS = false
+        MAX_ROWS_PER_PAGE = 10 ) 
+    FOLDER = '/09 - data services';
+

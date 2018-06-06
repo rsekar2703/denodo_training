@@ -1,0 +1,39 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE CUSTOM ds_invoices
+    FOLDER = '/01 - data sources'
+    CLASSNAME='com.denodo.vdb.contrib.wrapper.xls.ExcelWrapper';
+
+CREATE OR REPLACE WRAPPER CUSTOM ds_invoices
+    FOLDER = '/02 - base views'
+    DATASOURCENAME=ds_invoices
+    PARAMETERS (
+      'Type of file' = 'Excel 2007 or later (*.xlsx)',
+      'File location' = ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.denodo_training.folder.02 - base views.views.custom.ds_invoices.File location.ROUTE.HTTP.URL}'
+        AUTHENTICATION BASIC ( 
+          USER '${databases.denodo_training.folder.02 - base views.views.custom.ds_invoices.File location.ROUTE.HTTP.USER}'
+          PASSWORD '${databases.denodo_training.folder.02 - base views.views.custom.ds_invoices.File location.ROUTE.HTTP.PASSWORD}' ${databases.denodo_training.folder.02 - base views.views.custom.ds_invoices.File location.ROUTE.HTTP.PASSWORD.ENCRYPTED} )
+        PROXY OFF FILTER (UNZIP ),
+      'Extract data from all sheets' = true,
+      'Extract sheet name as a new column' = false,
+      'Start cell' = 'A4',
+      'Has headers' = true,
+      'Stream tuples' = true
+    )
+    OUTPUTSCHEMA (
+        invoice_id = 'invoice_id' : 'java.lang.Integer' (OPT) SORTABLE,
+        date_invoice = 'date_invoice' : 'java.lang.String' (OPT) SORTABLE,
+        order_id = 'order_id' : 'java.lang.Integer' (OPT) SORTABLE,
+        date_placed = 'date_placed' : 'java.lang.String' (OPT) SORTABLE,
+        date_delivered = 'date_delivered' : 'java.lang.String' (OPT) SORTABLE,
+        date_closed = 'date_closed' : 'java.lang.String' (OPT) SORTABLE,
+        first_name = 'first_name' : 'java.lang.String' (OPT) SORTABLE,
+        last_name = 'last_name' : 'java.lang.String' (OPT) SORTABLE,
+        email = 'email' : 'java.lang.String' (OPT) SORTABLE,
+        address = 'address' : 'java.lang.String' (OPT) SORTABLE,
+        country = 'country' : 'java.lang.String' (OPT) SORTABLE,
+        postal_code = 'postal_code' : 'java.lang.String' (OPT) SORTABLE,
+        phone = 'phone' : 'java.lang.String' (OPT) SORTABLE,
+        amount = 'amount' : 'java.lang.Integer' (OPT) SORTABLE,
+        tax = 'tax' : 'java.lang.String' (OPT) SORTABLE
+    );
+

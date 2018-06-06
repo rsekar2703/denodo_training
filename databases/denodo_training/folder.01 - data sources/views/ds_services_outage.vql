@@ -1,0 +1,35 @@
+﻿CREATE OR REPLACE WRAPPER DF ds_services_outage
+    FOLDER = '/01 - data sources'
+    DATASOURCENAME=ds_services_outage
+    OUTPUTSCHEMA (
+        code = 'Code' (OPT),
+        startdate = 'StartDate' (OPT),
+        enddate = 'EndDate' (OPT),
+        reason = 'Reason' (OPT),
+        planned = 'Planned' (OPT)
+    );
+
+CREATE OR REPLACE TABLE ds_services_outage I18N us_pst (
+        code:text, 
+        startdate:text, 
+        enddate:text, 
+        reason:text, 
+        planned:text
+    )
+    FOLDER = '/01 - data sources'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_services_outage(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD code (=,in) OPT ANY
+             ADD startdate (=,in) OPT ANY
+             ADD enddate (=,in) OPT ANY
+             ADD reason (=,in) OPT ANY
+             ADD planned (=,in) OPT ANY
+        )
+        OUTPUTLIST (code, enddate, planned, reason, startdate
+        )
+        WRAPPER (df ds_services_outage)
+    );
+

@@ -1,0 +1,7 @@
+﻿/databases/denodo_training/folder.07 - associations/07 - associations.vql
+/databases/denodo_training/folder.02 - base views/02 - base views.vql
+/databases/denodo_training/folder.01 - data sources/01 - data sources.vql
+/databases/denodo_training/folder.01 - data sources/datasources/jdbc/ds_human_resources.vql
+/databases/denodo_training/folder.02 - base views/views/bv_hr_employees.vql
+/databases/denodo_training/folder.01 - data sources/datasources/json/ds_sales.vql
+/databases/denodo_training/folder.02 - base views/views/bv_sales_all.vql

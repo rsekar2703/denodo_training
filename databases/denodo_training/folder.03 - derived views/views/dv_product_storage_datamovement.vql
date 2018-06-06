@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_product_storage_datamovement FOLDER = '/03 - derived views' AS SELECT bv_wo_stock.product_id AS product_id, bv_product.productname AS productname, bv_wo_stock.storage_id AS storage_id, bv_wo_storages.city AS city, count(*) AS amount FROM (bv_product AS bv_product NESTED INNER JOIN bv_wo_stock AS bv_wo_stock ON bv_product.productid = bv_wo_stock.product_id ) INNER JOIN bv_wo_storages AS bv_wo_storages ON bv_wo_stock.storage_id = bv_wo_storages.id  GROUP BY bv_wo_stock.storage_id, bv_wo_stock.product_id, bv_product.productname, bv_wo_storages.city CONTEXT (DATAMOVEMENTPLAN = bv_product : JDBC ds_web_orders);
+
+ALTER VIEW dv_product_storage_datamovement
+ LAYOUT (bv_product = [88, 231, 200, 225], bv_wo_stock = [369, 176, 200, 106], bv_wo_storages = [743, 177, 200, 186]);
+

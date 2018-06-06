@@ -1,0 +1,216 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM bv_sf_account
+    FOLDER = '/02 - base views'
+    DATASOURCENAME=ds_salesforce
+    PARAMETERS (
+      'ENTITY' = 'Account',
+      'BASE_URL' = 'https://eu6.salesforce.com/',
+      'SANDBOX' = false,
+      'CLIENT_ID' = '3MVG98_Psg5cppyYfVl16AyFcei1MRMqxfuF64DxOi3piwlb2HT_GR7YDOfb6SYa5ANdaDXAIziuzXjuaz.4.',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861D4x38iD8mDKdSB4uhxvKH9BNygn4pCQcWz0m06rwkP7V8XVOPAuGDTFQ_uJfOJdLgV4S9sBpaC8oURSz'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) SORTABLE,
+        isdeleted = 'IsDeleted' : 'java.lang.Boolean' (OPT) SORTABLE,
+        masterrecordid = 'MasterRecordId' : 'java.lang.String' (OPT) SORTABLE,
+        name = 'Name' : 'java.lang.String' (OPT) SORTABLE,
+        type = 'Type' : 'java.lang.String' (OPT) SORTABLE,
+        parentid = 'ParentId' : 'java.lang.String' (OPT) SORTABLE,
+        billingstreet = 'BillingStreet' : 'java.lang.String' (OPT) SORTABLE,
+        billingcity = 'BillingCity' : 'java.lang.String' (OPT) SORTABLE,
+        billingstate = 'BillingState' : 'java.lang.String' (OPT) SORTABLE,
+        billingpostalcode = 'BillingPostalCode' : 'java.lang.String' (OPT) SORTABLE,
+        billingcountry = 'BillingCountry' : 'java.lang.String' (OPT) SORTABLE,
+        billinglatitude = 'BillingLatitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        billinglongitude = 'BillingLongitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        billingaddress = 'BillingAddress' : 'java.lang.String' (OPT) NOT SORTABLE,
+        shippingstreet = 'ShippingStreet' : 'java.lang.String' (OPT) SORTABLE,
+        shippingcity = 'ShippingCity' : 'java.lang.String' (OPT) SORTABLE,
+        shippingstate = 'ShippingState' : 'java.lang.String' (OPT) SORTABLE,
+        shippingpostalcode = 'ShippingPostalCode' : 'java.lang.String' (OPT) SORTABLE,
+        shippingcountry = 'ShippingCountry' : 'java.lang.String' (OPT) SORTABLE,
+        shippinglatitude = 'ShippingLatitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        shippinglongitude = 'ShippingLongitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        shippingaddress = 'ShippingAddress' : 'java.lang.String' (OPT) NOT SORTABLE,
+        phone = 'Phone' : 'java.lang.String' (OPT) SORTABLE,
+        fax = 'Fax' : 'java.lang.String' (OPT) SORTABLE,
+        accountnumber = 'AccountNumber' : 'java.lang.String' (OPT) SORTABLE,
+        website = 'Website' : 'java.lang.String' (OPT) SORTABLE,
+        photourl = 'PhotoUrl' : 'java.lang.String' (OPT) SORTABLE,
+        sic = 'Sic' : 'java.lang.String' (OPT) SORTABLE,
+        industry = 'Industry' : 'java.lang.String' (OPT) SORTABLE,
+        annualrevenue = 'AnnualRevenue' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        numberofemployees = 'NumberOfEmployees' : 'java.lang.Long' (OPT) SORTABLE,
+        ownership = 'Ownership' : 'java.lang.String' (OPT) SORTABLE,
+        tickersymbol = 'TickerSymbol' : 'java.lang.String' (OPT) SORTABLE,
+        description = 'Description' : 'java.lang.String' NOT SORTABLE,
+        rating = 'Rating' : 'java.lang.String' (OPT) SORTABLE,
+        site = 'Site' : 'java.lang.String' (OPT) SORTABLE,
+        ownerid = 'OwnerId' : 'java.lang.String' (OPT) SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) SORTABLE,
+        lastactivitydate = 'LastActivityDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastvieweddate = 'LastViewedDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastreferenceddate = 'LastReferencedDate' : 'java.util.Date' (OPT) SORTABLE,
+        jigsaw = 'Jigsaw' : 'java.lang.String' (OPT) SORTABLE,
+        jigsawcompanyid = 'JigsawCompanyId' : 'java.lang.String' (OPT) SORTABLE,
+        cleanstatus = 'CleanStatus' : 'java.lang.String' (OPT) SORTABLE,
+        accountsource = 'AccountSource' : 'java.lang.String' (OPT) SORTABLE,
+        dunsnumber = 'DunsNumber' : 'java.lang.String' (OPT) SORTABLE,
+        tradestyle = 'Tradestyle' : 'java.lang.String' (OPT) SORTABLE,
+        naicscode = 'NaicsCode' : 'java.lang.String' (OPT) SORTABLE,
+        naicsdesc = 'NaicsDesc' : 'java.lang.String' (OPT) SORTABLE,
+        yearstarted = 'YearStarted' : 'java.lang.String' (OPT) SORTABLE,
+        sicdesc = 'SicDesc' : 'java.lang.String' (OPT) SORTABLE,
+        dandbcompanyid = 'DandbCompanyId' : 'java.lang.String' (OPT) SORTABLE,
+        customerpriority__c = 'CustomerPriority__c' : 'java.lang.String' (OPT) SORTABLE,
+        sla__c = 'SLA__c' : 'java.lang.String' (OPT) SORTABLE,
+        active__c = 'Active__c' : 'java.lang.String' (OPT) SORTABLE,
+        numberoflocations__c = 'NumberofLocations__c' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        upsellopportunity__c = 'UpsellOpportunity__c' : 'java.lang.String' (OPT) SORTABLE,
+        slaserialnumber__c = 'SLASerialNumber__c' : 'java.lang.String' (OPT) SORTABLE,
+        slaexpirationdate__c = 'SLAExpirationDate__c' : 'java.util.Date' (OPT) SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_sf_account I18N us_pst (
+        id:text, 
+        isdeleted:boolean, 
+        masterrecordid:text, 
+        name:text, 
+        type:text, 
+        parentid:text, 
+        billingstreet:text, 
+        billingcity:text, 
+        billingstate:text, 
+        billingpostalcode:text, 
+        billingcountry:text, 
+        billinglatitude:decimal, 
+        billinglongitude:decimal, 
+        billingaddress:text, 
+        shippingstreet:text, 
+        shippingcity:text, 
+        shippingstate:text, 
+        shippingpostalcode:text, 
+        shippingcountry:text, 
+        shippinglatitude:decimal, 
+        shippinglongitude:decimal, 
+        shippingaddress:text, 
+        phone:text, 
+        fax:text, 
+        accountnumber:text, 
+        website:text, 
+        photourl:text, 
+        sic:text, 
+        industry:text, 
+        annualrevenue:decimal, 
+        numberofemployees:long, 
+        ownership:text, 
+        tickersymbol:text, 
+        description:text, 
+        rating:text, 
+        site:text, 
+        ownerid:text, 
+        createddate:date, 
+        createdbyid:text, 
+        lastmodifieddate:date, 
+        lastmodifiedbyid:text, 
+        systemmodstamp:date, 
+        lastactivitydate:date, 
+        lastvieweddate:date, 
+        lastreferenceddate:date, 
+        jigsaw:text, 
+        jigsawcompanyid:text, 
+        cleanstatus:text, 
+        accountsource:text, 
+        dunsnumber:text, 
+        tradestyle:text, 
+        naicscode:text, 
+        naicsdesc:text, 
+        yearstarted:text, 
+        sicdesc:text, 
+        dandbcompanyid:text, 
+        customerpriority__c:text, 
+        sla__c:text, 
+        active__c:text, 
+        numberoflocations__c:decimal, 
+        upsellopportunity__c:text, 
+        slaserialnumber__c:text, 
+        slaexpirationdate__c:date
+    )
+    FOLDER = '/02 - base views'
+    CACHE FULL
+    TIMETOLIVEINCACHE NOEXPIRE
+    ADD SEARCHMETHOD bv_sf_account(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD isdeleted (any) OPT ANY
+             ADD masterrecordid (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD type (any) OPT ANY
+             ADD parentid (any) OPT ANY
+             ADD billingstreet (any) OPT ANY
+             ADD billingcity (any) OPT ANY
+             ADD billingstate (any) OPT ANY
+             ADD billingpostalcode (any) OPT ANY
+             ADD billingcountry (any) OPT ANY
+             ADD billinglatitude (any) OPT ANY
+             ADD billinglongitude (any) OPT ANY
+             ADD billingaddress (any) OPT ANY
+             ADD shippingstreet (any) OPT ANY
+             ADD shippingcity (any) OPT ANY
+             ADD shippingstate (any) OPT ANY
+             ADD shippingpostalcode (any) OPT ANY
+             ADD shippingcountry (any) OPT ANY
+             ADD shippinglatitude (any) OPT ANY
+             ADD shippinglongitude (any) OPT ANY
+             ADD shippingaddress (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD fax (any) OPT ANY
+             ADD accountnumber (any) OPT ANY
+             ADD website (any) OPT ANY
+             ADD photourl (any) OPT ANY
+             ADD sic (any) OPT ANY
+             ADD industry (any) OPT ANY
+             ADD annualrevenue (any) OPT ANY
+             ADD numberofemployees (any) OPT ANY
+             ADD ownership (any) OPT ANY
+             ADD tickersymbol (any) OPT ANY
+             ADD description NOS ZERO ()
+             ADD rating (any) OPT ANY
+             ADD site (any) OPT ANY
+             ADD ownerid (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD lastactivitydate (any) OPT ANY
+             ADD lastvieweddate (any) OPT ANY
+             ADD lastreferenceddate (any) OPT ANY
+             ADD jigsaw (any) OPT ANY
+             ADD jigsawcompanyid (any) OPT ANY
+             ADD cleanstatus (any) OPT ANY
+             ADD accountsource (any) OPT ANY
+             ADD dunsnumber (any) OPT ANY
+             ADD tradestyle (any) OPT ANY
+             ADD naicscode (any) OPT ANY
+             ADD naicsdesc (any) OPT ANY
+             ADD yearstarted (any) OPT ANY
+             ADD sicdesc (any) OPT ANY
+             ADD dandbcompanyid (any) OPT ANY
+             ADD customerpriority__c (any) OPT ANY
+             ADD sla__c (any) OPT ANY
+             ADD active__c (any) OPT ANY
+             ADD numberoflocations__c (any) OPT ANY
+             ADD upsellopportunity__c (any) OPT ANY
+             ADD slaserialnumber__c (any) OPT ANY
+             ADD slaexpirationdate__c (any) OPT ANY
+        )
+        OUTPUTLIST (accountnumber, accountsource, active__c, annualrevenue, billingaddress, billingcity, billingcountry, billinglatitude, billinglongitude, billingpostalcode, billingstate, billingstreet, cleanstatus, createdbyid, createddate, customerpriority__c, dandbcompanyid, description, dunsnumber, fax, id, industry, isdeleted, jigsaw, jigsawcompanyid, lastactivitydate, lastmodifiedbyid, lastmodifieddate, lastreferenceddate, lastvieweddate, masterrecordid, naicscode, naicsdesc, name, numberofemployees, numberoflocations__c, ownerid, ownership, parentid, phone, photourl, rating, shippingaddress, shippingcity, shippingcountry, shippinglatitude, shippinglongitude, shippingpostalcode, shippingstate, shippingstreet, sic, sicdesc, site, sla__c, slaexpirationdate__c, slaserialnumber__c, systemmodstamp, tickersymbol, tradestyle, type, upsellopportunity__c, website, yearstarted
+        )
+        WRAPPER (custom bv_sf_account)
+    );
+

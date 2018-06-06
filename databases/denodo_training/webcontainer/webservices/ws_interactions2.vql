@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE ws_interactions2;
+
+DEPLOY WEBSERVICE ws_interactions2 LOGIN = '${databases.denodo_training.webcontainer.webservices.ws_interactions2.LOGIN}' PASSWORD = '${databases.denodo_training.webcontainer.webservices.ws_interactions2.PASSWORD}' ${databases.denodo_training.webcontainer.webservices.ws_interactions2.PASSWORD.ENCRYPTED};
+

@@ -1,0 +1,38 @@
+﻿CREATE OR REPLACE SOAP WEBSERVICE ws_interactions2
+    CONNECTION (
+        CHUNKSIZE = 1000
+        CHUNKTIMEOUT = 90000
+        QUERYTIMEOUT = 900000
+        POOLENABLED = true
+        POOLINITSIZE = 0
+        POOLMAXACTIVE = 30
+    )
+    I18N  = us_pst
+    DATETYPEMAPPING DATE
+    NOWRAPARRAYS
+    RAISEFAULTONIDU
+    DONOTAPPLYOUTPUTXSLTTOERRORS
+    OUTPUT 
+        ( STYLE DOCUMENT )
+    OPERATION 'getInteractionsByCustomer' (
+        TYPE SELECT
+        SCHEMA VIEW dv_interactions_customer
+        VQL = 'SELECT customer_code, interactions FROM denodo_training.dv_interactions_customer ^ExecuteIfIsNotNull("WHERE ",@WHEREEXPRESSION,"") CONTEXT (''i18n'' = ''us_pst''^ExecuteIfIsNotNull(", ",@VERBOSEERRORS,"")^ExecuteIfIsNotNull(", ",@CONTEXTEXPRESSION,""))'
+        INPUTS 'getInteractionsByCustomer' (
+            'CUSTOMER_CODE' customer_code:'text' '=' ('/CUSTOMER_CODE'='customer_code')
+        )
+        OUTPUT 
+            'DV_INTERACTIONS_CUSTOMERReturn': Array of ( 'DV_INTERACTIONS_CUSTOMERReturnRow': Register of (
+                customer_code : 'text',
+                interactions : '_array_register_agent_id_interaction_date_case_id_interaction_phone_interaction_ip'
+            ) (
+                    '/customer_code'='CUSTOMER_CODE',
+                    '/interactions'='INTERACTIONS':'_array_register_agent_id_interaction_date_case_id_interaction_phone_interaction_ip' / '_register_agent_id_interaction_date_case_id_interaction_phone_interaction_ip',
+                    '/interactions/agent_id'='AGENT_ID',
+                    '/interactions/case_id'='CASE_ID',
+                    '/interactions/interaction_date'='INTERACTION_DATE',
+                    '/interactions/interaction_ip'='INTERACTION_IP',
+                    '/interactions/interaction_phone'='INTERACTION_PHONE'))
+    )
+    FOLDER = '/03 - derived views';
+

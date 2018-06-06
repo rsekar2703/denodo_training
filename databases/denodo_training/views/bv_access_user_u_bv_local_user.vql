@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW bv_access_user_u_bv_local_user AS SELECT name, age, address, city, phone, service, email, birthdate, state, zip, joindate, code, zipcode, registration_date FROM (SELECT * FROM bv_access_user UNION SELECT service, zipcode, birthdate, phone, state, address, code, city, name, email, registration_date FROM bv_local_user);
+
+ALTER VIEW bv_access_user_u_bv_local_user
+ LAYOUT (bv_access_user = [233, 82, 200, 225], bv_local_user = [653, 137, 200, 225]);
+

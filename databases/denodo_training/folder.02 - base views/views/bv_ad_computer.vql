@@ -1,0 +1,353 @@
+﻿CREATE OR REPLACE WRAPPER LDAP bv_ad_computer
+    FOLDER = '/02 - base views'
+    DATASOURCENAME=ds_active_directory
+    OBJECTCLASSES='computer'
+    RECURSIVESEARCH=TRUE
+    SINGLE-VALUE=FALSE
+    OUTPUTSCHEMA (
+        catalogs = 'catalogs' : ARRAY OF (
+            catalogs = 'CATALOGS' : REGISTER OF (
+                catalogs = 'catalogs' : 'java.lang.String' (OPT)
+            )
+        ),
+        cn = 'cn' : 'java.lang.String' (OPT),
+        dnshostname = 'dNSHostName' : 'java.lang.String' (OPT),
+        defaultlocalpolicyobject = 'defaultLocalPolicyObject' : 'java.lang.String' (OPT),
+        localpolicyflags = 'localPolicyFlags' : 'java.lang.Integer' (OPT),
+        location = 'location' : 'java.lang.String' (OPT),
+        machinerole = 'machineRole' : 'java.lang.Integer' (OPT),
+        managedby = 'managedBy' : 'java.lang.String' (OPT),
+        msdsadditionaldnshostname_0 = 'msDS-AdditionalDnsHostName' : ARRAY OF (
+            msdsadditionaldnshostname_0 = 'msDS-AdditionalDnsHostName' : REGISTER OF (
+                msdsadditionaldnshostname_0 = 'msDS-AdditionalDnsHostName' : 'java.lang.String' (OPT)
+            )
+        ),
+        msdsadditionalsamaccountname_0 = 'msDS-AdditionalSamAccountName' : ARRAY OF (
+            msdsadditionalsamaccountname_0 = 'msDS-AdditionalSamAccountName' : REGISTER OF (
+                msdsadditionalsamaccountname_0 = 'msDS-AdditionalSamAccountName' : 'java.lang.String' (OPT)
+            )
+        ),
+        msdsauthenticatedatdc_0 = 'msDS-AuthenticatedAtDC' : ARRAY OF (
+            msdsauthenticatedatdc_0 = 'msDS-AuthenticatedAtDC' : REGISTER OF (
+                msdsauthenticatedatdc_0 = 'msDS-AuthenticatedAtDC' : 'java.lang.String' (OPT)
+            )
+        ),
+        msdsexecutescriptpassword_0 = 'msDS-ExecuteScriptPassword' : 'java.lang.String' (OPT),
+        msdshostserviceaccount_0 = 'msDS-HostServiceAccount' : ARRAY OF (
+            msdshostserviceaccount_0 = 'msDS-HostServiceAccount' : REGISTER OF (
+                msdshostserviceaccount_0 = 'msDS-HostServiceAccount' : 'java.lang.String' (OPT)
+            )
+        ),
+        msdsisusercachableatrodc_0 = 'msDS-IsUserCachableAtRodc' : 'java.lang.Integer' (OPT),
+        msdskrbtgtlink_0 = 'msDS-KrbTgtLink' : 'java.lang.String' (OPT),
+        msdsneverrevealgroup_0 = 'msDS-NeverRevealGroup' : ARRAY OF (
+            msdsneverrevealgroup_0 = 'msDS-NeverRevealGroup' : REGISTER OF (
+                msdsneverrevealgroup_0 = 'msDS-NeverRevealGroup' : 'java.lang.String' (OPT)
+            )
+        ),
+        msdspromotionsettings_0 = 'msDS-PromotionSettings' : 'java.lang.String' (OPT),
+        msdsrevealondemandgroup_0 = 'msDS-RevealOnDemandGroup' : ARRAY OF (
+            msdsrevealondemandgroup_0 = 'msDS-RevealOnDemandGroup' : REGISTER OF (
+                msdsrevealondemandgroup_0 = 'msDS-RevealOnDemandGroup' : 'java.lang.String' (OPT)
+            )
+        ),
+        msdsrevealedlist_0 = 'msDS-RevealedList' : ARRAY OF (
+            msdsrevealedlist_0 = 'msDS-RevealedList' : REGISTER OF (
+                msdsrevealedlist_0 = 'msDS-RevealedList' : 'java.lang.String' (OPT)
+            )
+        ),
+        msdsrevealedusers_0 = 'msDS-RevealedUsers' : ARRAY OF (
+            msdsrevealedusers_0 = 'msDS-RevealedUsers' : REGISTER OF (
+                msdsrevealedusers_0 = 'msDS-RevealedUsers' : 'java.lang.String' (OPT)
+            )
+        ),
+        msdssitename_0 = 'msDS-SiteName' : 'java.lang.String' (OPT),
+        msdsisgc_0 = 'msDS-isGC' : 'java.lang.Boolean' (OPT),
+        msdsisrodc_0 = 'msDS-isRODC' : 'java.lang.Boolean' (OPT),
+        mssfu30aliases = 'msSFU30Aliases' : ARRAY OF (
+            mssfu30aliases = 'msSFU30Aliases' : REGISTER OF (
+                mssfu30aliases = 'msSFU30Aliases' : 'java.lang.String' (OPT)
+            )
+        ),
+        mssfu30name = 'msSFU30Name' : 'java.lang.String' (OPT),
+        mssfu30nisdomain = 'msSFU30NisDomain' : 'java.lang.String' (OPT),
+        mstpmownerinformation_0 = 'msTPM-OwnerInformation' : 'java.lang.String' (OPT),
+        mstsendpointdata = 'msTSEndpointData' : 'java.lang.String' (OPT),
+        mstsendpointplugin = 'msTSEndpointPlugin' : 'java.lang.String' (OPT),
+        mstsendpointtype = 'msTSEndpointType' : 'java.lang.Integer' (OPT),
+        mstsprimarydesktopbl = 'msTSPrimaryDesktopBL' : ARRAY OF (
+            mstsprimarydesktopbl = 'msTSPrimaryDesktopBL' : REGISTER OF (
+                mstsprimarydesktopbl = 'msTSPrimaryDesktopBL' : 'java.lang.String' (OPT)
+            )
+        ),
+        mstsproperty01 = 'msTSProperty01' : ARRAY OF (
+            mstsproperty01 = 'msTSProperty01' : REGISTER OF (
+                mstsproperty01 = 'msTSProperty01' : 'java.lang.String' (OPT)
+            )
+        ),
+        mstsproperty02 = 'msTSProperty02' : ARRAY OF (
+            mstsproperty02 = 'msTSProperty02' : REGISTER OF (
+                mstsproperty02 = 'msTSProperty02' : 'java.lang.String' (OPT)
+            )
+        ),
+        mstssecondarydesktopbl = 'msTSSecondaryDesktopBL' : ARRAY OF (
+            mstssecondarydesktopbl = 'msTSSecondaryDesktopBL' : REGISTER OF (
+                mstssecondarydesktopbl = 'msTSSecondaryDesktopBL' : 'java.lang.String' (OPT)
+            )
+        ),
+        netbootguid = 'netbootGUID' : 'java.lang.String' (OPT),
+        netbootinitialization = 'netbootInitialization' : 'java.lang.String' (OPT),
+        netbootmachinefilepath = 'netbootMachineFilePath' : 'java.lang.String' (OPT),
+        netbootmirrordatafile = 'netbootMirrorDataFile' : ARRAY OF (
+            netbootmirrordatafile = 'netbootMirrorDataFile' : REGISTER OF (
+                netbootmirrordatafile = 'netbootMirrorDataFile' : 'java.lang.String' (OPT)
+            )
+        ),
+        netbootsiffile = 'netbootSIFFile' : ARRAY OF (
+            netbootsiffile = 'netbootSIFFile' : REGISTER OF (
+                netbootsiffile = 'netbootSIFFile' : 'java.lang.String' (OPT)
+            )
+        ),
+        networkaddress = 'networkAddress' : ARRAY OF (
+            networkaddress = 'networkAddress' : REGISTER OF (
+                networkaddress = 'networkAddress' : 'java.lang.String' (OPT)
+            )
+        ),
+        nismapname = 'nisMapName' : 'java.lang.String' (OPT),
+        operatingsystem = 'operatingSystem' : 'java.lang.String' (OPT),
+        operatingsystemhotfix = 'operatingSystemHotfix' : 'java.lang.String' (OPT),
+        operatingsystemservicepack = 'operatingSystemServicePack' : 'java.lang.String' (OPT),
+        operatingsystemversion = 'operatingSystemVersion' : 'java.lang.String' (OPT),
+        physicallocationobject = 'physicalLocationObject' : 'java.lang.String' (OPT),
+        policyreplicationflags = 'policyReplicationFlags' : 'java.lang.Integer' (OPT),
+        ridsetreferences = 'rIDSetReferences' : ARRAY OF (
+            ridsetreferences = 'rIDSetReferences' : REGISTER OF (
+                ridsetreferences = 'rIDSetReferences' : 'java.lang.String' (OPT)
+            )
+        ),
+        siteguid = 'siteGUID' : 'java.lang.String' (OPT),
+        volumecount = 'volumeCount' : 'java.lang.Integer' (OPT)
+    );
+
+CREATE OR REPLACE TYPE computer_catalogs_catalogs AS REGISTER OF (catalogs:text);
+
+CREATE OR REPLACE TYPE computer_catalogs AS ARRAY OF computer_catalogs_catalogs;
+
+CREATE OR REPLACE TYPE computer_msdsadditionaldnshostname_0_msdsadditionaldnshostname_0 AS REGISTER OF (msdsadditionaldnshostname_0:text);
+
+CREATE OR REPLACE TYPE computer_msdsadditionaldnshostname_0 AS ARRAY OF computer_msdsadditionaldnshostname_0_msdsadditionaldnshostname_0;
+
+CREATE OR REPLACE TYPE computer_msdsadditionalsamaccountname_0_msdsadditionalsamaccountname_0 AS REGISTER OF (msdsadditionalsamaccountname_0:text);
+
+CREATE OR REPLACE TYPE computer_msdsadditionalsamaccountname_0 AS ARRAY OF computer_msdsadditionalsamaccountname_0_msdsadditionalsamaccountname_0;
+
+CREATE OR REPLACE TYPE computer_msdsauthenticatedatdc_0_msdsauthenticatedatdc_0 AS REGISTER OF (msdsauthenticatedatdc_0:text);
+
+CREATE OR REPLACE TYPE computer_msdsauthenticatedatdc_0 AS ARRAY OF computer_msdsauthenticatedatdc_0_msdsauthenticatedatdc_0;
+
+CREATE OR REPLACE TYPE computer_msdshostserviceaccount_0_msdshostserviceaccount_0 AS REGISTER OF (msdshostserviceaccount_0:text);
+
+CREATE OR REPLACE TYPE computer_msdshostserviceaccount_0 AS ARRAY OF computer_msdshostserviceaccount_0_msdshostserviceaccount_0;
+
+CREATE OR REPLACE TYPE computer_msdsneverrevealgroup_0_msdsneverrevealgroup_0 AS REGISTER OF (msdsneverrevealgroup_0:text);
+
+CREATE OR REPLACE TYPE computer_msdsneverrevealgroup_0 AS ARRAY OF computer_msdsneverrevealgroup_0_msdsneverrevealgroup_0;
+
+CREATE OR REPLACE TYPE computer_msdsrevealondemandgroup_0_msdsrevealondemandgroup_0 AS REGISTER OF (msdsrevealondemandgroup_0:text);
+
+CREATE OR REPLACE TYPE computer_msdsrevealondemandgroup_0 AS ARRAY OF computer_msdsrevealondemandgroup_0_msdsrevealondemandgroup_0;
+
+CREATE OR REPLACE TYPE computer_msdsrevealedlist_0_msdsrevealedlist_0 AS REGISTER OF (msdsrevealedlist_0:text);
+
+CREATE OR REPLACE TYPE computer_msdsrevealedlist_0 AS ARRAY OF computer_msdsrevealedlist_0_msdsrevealedlist_0;
+
+CREATE OR REPLACE TYPE computer_msdsrevealedusers_0_msdsrevealedusers_0 AS REGISTER OF (msdsrevealedusers_0:text);
+
+CREATE OR REPLACE TYPE computer_msdsrevealedusers_0 AS ARRAY OF computer_msdsrevealedusers_0_msdsrevealedusers_0;
+
+CREATE OR REPLACE TYPE computer_mssfu30aliases_mssfu30aliases AS REGISTER OF (mssfu30aliases:text);
+
+CREATE OR REPLACE TYPE computer_mssfu30aliases AS ARRAY OF computer_mssfu30aliases_mssfu30aliases;
+
+CREATE OR REPLACE TYPE computer_mstsprimarydesktopbl_mstsprimarydesktopbl AS REGISTER OF (mstsprimarydesktopbl:text);
+
+CREATE OR REPLACE TYPE computer_mstsprimarydesktopbl AS ARRAY OF computer_mstsprimarydesktopbl_mstsprimarydesktopbl;
+
+CREATE OR REPLACE TYPE computer_mstsproperty01_mstsproperty01 AS REGISTER OF (mstsproperty01:text);
+
+CREATE OR REPLACE TYPE computer_mstsproperty01 AS ARRAY OF computer_mstsproperty01_mstsproperty01;
+
+CREATE OR REPLACE TYPE computer_mstsproperty02_mstsproperty02 AS REGISTER OF (mstsproperty02:text);
+
+CREATE OR REPLACE TYPE computer_mstsproperty02 AS ARRAY OF computer_mstsproperty02_mstsproperty02;
+
+CREATE OR REPLACE TYPE computer_mstssecondarydesktopbl_mstssecondarydesktopbl AS REGISTER OF (mstssecondarydesktopbl:text);
+
+CREATE OR REPLACE TYPE computer_mstssecondarydesktopbl AS ARRAY OF computer_mstssecondarydesktopbl_mstssecondarydesktopbl;
+
+CREATE OR REPLACE TYPE computer_netbootmirrordatafile_netbootmirrordatafile AS REGISTER OF (netbootmirrordatafile:text);
+
+CREATE OR REPLACE TYPE computer_netbootmirrordatafile AS ARRAY OF computer_netbootmirrordatafile_netbootmirrordatafile;
+
+CREATE OR REPLACE TYPE computer_netbootsiffile_netbootsiffile AS REGISTER OF (netbootsiffile:text);
+
+CREATE OR REPLACE TYPE computer_netbootsiffile AS ARRAY OF computer_netbootsiffile_netbootsiffile;
+
+CREATE OR REPLACE TYPE computer_networkaddress_networkaddress AS REGISTER OF (networkaddress:text);
+
+CREATE OR REPLACE TYPE computer_networkaddress AS ARRAY OF computer_networkaddress_networkaddress;
+
+CREATE OR REPLACE TYPE computer_ridsetreferences_ridsetreferences AS REGISTER OF (ridsetreferences:text);
+
+CREATE OR REPLACE TYPE computer_ridsetreferences AS ARRAY OF computer_ridsetreferences_ridsetreferences;
+
+CREATE OR REPLACE TABLE bv_ad_computer I18N us_pst (
+        catalogs:computer_catalogs, 
+        cn:text, 
+        dnshostname:text, 
+        defaultlocalpolicyobject:text, 
+        localpolicyflags:int, 
+        location:text, 
+        machinerole:int, 
+        managedby:text, 
+        msdsadditionaldnshostname_0:computer_msdsadditionaldnshostname_0, 
+        msdsadditionalsamaccountname_0:computer_msdsadditionalsamaccountname_0, 
+        msdsauthenticatedatdc_0:computer_msdsauthenticatedatdc_0, 
+        msdsexecutescriptpassword_0:text, 
+        msdshostserviceaccount_0:computer_msdshostserviceaccount_0, 
+        msdsisusercachableatrodc_0:int, 
+        msdskrbtgtlink_0:text, 
+        msdsneverrevealgroup_0:computer_msdsneverrevealgroup_0, 
+        msdspromotionsettings_0:text, 
+        msdsrevealondemandgroup_0:computer_msdsrevealondemandgroup_0, 
+        msdsrevealedlist_0:computer_msdsrevealedlist_0, 
+        msdsrevealedusers_0:computer_msdsrevealedusers_0, 
+        msdssitename_0:text, 
+        msdsisgc_0:boolean, 
+        msdsisrodc_0:boolean, 
+        mssfu30aliases:computer_mssfu30aliases, 
+        mssfu30name:text, 
+        mssfu30nisdomain:text, 
+        mstpmownerinformation_0:text, 
+        mstsendpointdata:text, 
+        mstsendpointplugin:text, 
+        mstsendpointtype:int, 
+        mstsprimarydesktopbl:computer_mstsprimarydesktopbl, 
+        mstsproperty01:computer_mstsproperty01, 
+        mstsproperty02:computer_mstsproperty02, 
+        mstssecondarydesktopbl:computer_mstssecondarydesktopbl, 
+        netbootguid:text, 
+        netbootinitialization:text, 
+        netbootmachinefilepath:text, 
+        netbootmirrordatafile:computer_netbootmirrordatafile, 
+        netbootsiffile:computer_netbootsiffile, 
+        networkaddress:computer_networkaddress, 
+        nismapname:text, 
+        operatingsystem:text, 
+        operatingsystemhotfix:text, 
+        operatingsystemservicepack:text, 
+        operatingsystemversion:text, 
+        physicallocationobject:text, 
+        policyreplicationflags:int, 
+        ridsetreferences:computer_ridsetreferences, 
+        siteguid:text, 
+        volumecount:int
+    )
+    FOLDER = '/02 - base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_ad_computer(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD catalogs NOS ZERO ()
+             ADD catalogs NOS ZERO ()
+             ADD catalogs.catalogs (any) OPT ANY
+             ADD cn (any) OPT ANY
+             ADD dnshostname (any) OPT ANY
+             ADD defaultlocalpolicyobject (any) OPT ANY
+             ADD localpolicyflags (any) OPT ANY
+             ADD location (any) OPT ANY
+             ADD machinerole (any) OPT ANY
+             ADD managedby (any) OPT ANY
+             ADD msdsadditionaldnshostname_0 NOS ZERO ()
+             ADD msdsadditionaldnshostname_0 NOS ZERO ()
+             ADD msdsadditionaldnshostname_0.msdsadditionaldnshostname_0 (any) OPT ANY
+             ADD msdsadditionalsamaccountname_0 NOS ZERO ()
+             ADD msdsadditionalsamaccountname_0 NOS ZERO ()
+             ADD msdsadditionalsamaccountname_0.msdsadditionalsamaccountname_0 (any) OPT ANY
+             ADD msdsauthenticatedatdc_0 NOS ZERO ()
+             ADD msdsauthenticatedatdc_0 NOS ZERO ()
+             ADD msdsauthenticatedatdc_0.msdsauthenticatedatdc_0 (any) OPT ANY
+             ADD msdsexecutescriptpassword_0 (any) OPT ANY
+             ADD msdshostserviceaccount_0 NOS ZERO ()
+             ADD msdshostserviceaccount_0 NOS ZERO ()
+             ADD msdshostserviceaccount_0.msdshostserviceaccount_0 (any) OPT ANY
+             ADD msdsisusercachableatrodc_0 (any) OPT ANY
+             ADD msdskrbtgtlink_0 (any) OPT ANY
+             ADD msdsneverrevealgroup_0 NOS ZERO ()
+             ADD msdsneverrevealgroup_0 NOS ZERO ()
+             ADD msdsneverrevealgroup_0.msdsneverrevealgroup_0 (any) OPT ANY
+             ADD msdspromotionsettings_0 (any) OPT ANY
+             ADD msdsrevealondemandgroup_0 NOS ZERO ()
+             ADD msdsrevealondemandgroup_0 NOS ZERO ()
+             ADD msdsrevealondemandgroup_0.msdsrevealondemandgroup_0 (any) OPT ANY
+             ADD msdsrevealedlist_0 NOS ZERO ()
+             ADD msdsrevealedlist_0 NOS ZERO ()
+             ADD msdsrevealedlist_0.msdsrevealedlist_0 (any) OPT ANY
+             ADD msdsrevealedusers_0 NOS ZERO ()
+             ADD msdsrevealedusers_0 NOS ZERO ()
+             ADD msdsrevealedusers_0.msdsrevealedusers_0 (any) OPT ANY
+             ADD msdssitename_0 (any) OPT ANY
+             ADD msdsisgc_0 (any) OPT ANY
+             ADD msdsisrodc_0 (any) OPT ANY
+             ADD mssfu30aliases NOS ZERO ()
+             ADD mssfu30aliases NOS ZERO ()
+             ADD mssfu30aliases.mssfu30aliases (any) OPT ANY
+             ADD mssfu30name (any) OPT ANY
+             ADD mssfu30nisdomain (any) OPT ANY
+             ADD mstpmownerinformation_0 (any) OPT ANY
+             ADD mstsendpointdata (any) OPT ANY
+             ADD mstsendpointplugin (any) OPT ANY
+             ADD mstsendpointtype (any) OPT ANY
+             ADD mstsprimarydesktopbl NOS ZERO ()
+             ADD mstsprimarydesktopbl NOS ZERO ()
+             ADD mstsprimarydesktopbl.mstsprimarydesktopbl (any) OPT ANY
+             ADD mstsproperty01 NOS ZERO ()
+             ADD mstsproperty01 NOS ZERO ()
+             ADD mstsproperty01.mstsproperty01 (any) OPT ANY
+             ADD mstsproperty02 NOS ZERO ()
+             ADD mstsproperty02 NOS ZERO ()
+             ADD mstsproperty02.mstsproperty02 (any) OPT ANY
+             ADD mstssecondarydesktopbl NOS ZERO ()
+             ADD mstssecondarydesktopbl NOS ZERO ()
+             ADD mstssecondarydesktopbl.mstssecondarydesktopbl (any) OPT ANY
+             ADD netbootguid (any) OPT ANY
+             ADD netbootinitialization (any) OPT ANY
+             ADD netbootmachinefilepath (any) OPT ANY
+             ADD netbootmirrordatafile NOS ZERO ()
+             ADD netbootmirrordatafile NOS ZERO ()
+             ADD netbootmirrordatafile.netbootmirrordatafile (any) OPT ANY
+             ADD netbootsiffile NOS ZERO ()
+             ADD netbootsiffile NOS ZERO ()
+             ADD netbootsiffile.netbootsiffile (any) OPT ANY
+             ADD networkaddress NOS ZERO ()
+             ADD networkaddress NOS ZERO ()
+             ADD networkaddress.networkaddress (any) OPT ANY
+             ADD nismapname (any) OPT ANY
+             ADD operatingsystem (any) OPT ANY
+             ADD operatingsystemhotfix (any) OPT ANY
+             ADD operatingsystemservicepack (any) OPT ANY
+             ADD operatingsystemversion (any) OPT ANY
+             ADD physicallocationobject (any) OPT ANY
+             ADD policyreplicationflags (any) OPT ANY
+             ADD ridsetreferences NOS ZERO ()
+             ADD ridsetreferences NOS ZERO ()
+             ADD ridsetreferences.ridsetreferences (any) OPT ANY
+             ADD siteguid (any) OPT ANY
+             ADD volumecount (any) OPT ANY
+        )
+        OUTPUTLIST (catalogs, cn, defaultlocalpolicyobject, dnshostname, localpolicyflags, location, machinerole, managedby, msdsadditionaldnshostname_0, msdsadditionalsamaccountname_0, msdsauthenticatedatdc_0, msdsexecutescriptpassword_0, msdshostserviceaccount_0, msdsisgc_0, msdsisrodc_0, msdsisusercachableatrodc_0, msdskrbtgtlink_0, msdsneverrevealgroup_0, msdspromotionsettings_0, msdsrevealedlist_0, msdsrevealedusers_0, msdsrevealondemandgroup_0, msdssitename_0, mssfu30aliases, mssfu30name, mssfu30nisdomain, mstpmownerinformation_0, mstsendpointdata, mstsendpointplugin, mstsendpointtype, mstsprimarydesktopbl, mstsproperty01, mstsproperty02, mstssecondarydesktopbl, netbootguid, netbootinitialization, netbootmachinefilepath, netbootmirrordatafile, netbootsiffile, networkaddress, nismapname, operatingsystem, operatingsystemhotfix, operatingsystemservicepack, operatingsystemversion, physicallocationobject, policyreplicationflags, ridsetreferences, siteguid, volumecount
+        )
+        WRAPPER (ldap bv_ad_computer)
+    );
+

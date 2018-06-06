@@ -1,0 +1,31 @@
+﻿/databases/denodo_training/folder.09 - data services/09 - data services.vql
+/databases/denodo_training/folder.06 - interfaces/06 - interfaces.vql
+/databases/denodo_training/folder.02 - base views/02 - base views.vql
+/extensions/jars/denodo-salesforce-rest-wrapper-6.0.vql
+/databases/denodo_training/folder.01 - data sources/01 - data sources.vql
+/databases/denodo_training/folder.01 - data sources/datasources/custom/ds_salesforce.vql
+/databases/denodo_training/folder.02 - base views/views/bv_sf_account.vql
+/databases/denodo_training/folder.06 - interfaces/views/account.vql
+/databases/denodo_training/folder.01 - data sources/datasources/jdbc/ds_web_orders.vql
+/databases/denodo_training/folder.02 - base views/views/bv_wo_customer.vql
+/databases/denodo_training/folder.06 - interfaces/views/customer.vql
+/databases/denodo_training/folder.01 - data sources/datasources/jdbc/ds_human_resources.vql
+/databases/denodo_training/folder.02 - base views/views/bv_hr_employees.vql
+/databases/denodo_training/folder.06 - interfaces/views/employee.vql
+/databases/denodo_training/folder.03 - derived views/03 - derived views.vql
+/databases/denodo_training/folder.01 - data sources/datasources/odbc/ds_call_center.vql
+/databases/denodo_training/folder.02 - base views/views/bv_cc_service_call.vql
+/databases/denodo_training/folder.01 - data sources/datasources/jdbc/ds_support_site.vql
+/databases/denodo_training/folder.02 - base views/views/bv_support_get_all_service_request.vql
+/databases/denodo_training/folder.03 - derived views/views/dv_interactions.vql
+/databases/denodo_training/folder.06 - interfaces/views/interaction.vql
+/databases/denodo_training/folder.02 - base views/views/bv_wo_orders.vql
+/databases/denodo_training/folder.02 - base views/views/bv_wo_order_item.vql
+/databases/denodo_training/folder.03 - derived views/views/dv_orders.vql
+/databases/denodo_training/folder.06 - interfaces/views/order.vql
+/databases/denodo_training/folder.01 - data sources/datasources/ws/ds_product.vql
+/databases/denodo_training/folder.02 - base views/views/bv_product.vql
+/databases/denodo_training/folder.06 - interfaces/views/product.vql
+/databases/denodo_training/folder.01 - data sources/datasources/json/ds_sales.vql
+/databases/denodo_training/folder.02 - base views/views/bv_sales_all.vql
+/databases/denodo_training/folder.06 - interfaces/views/sales.vql

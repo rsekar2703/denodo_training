@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_bv_product_by_category FOLDER = '/02 - base views' AS SELECT bv_product_by_category.parameters AS parameters, bv_product_by_category.return AS return, categoryname FROM bv_product_by_category USING PARAMETERS ( categoryname : text);
+
+ALTER VIEW p_bv_product_by_category
+ LAYOUT (bv_product_by_category = [20, 20, 750, 86]);
+

@@ -1,0 +1,8 @@
+﻿CREATE OR REPLACE ASSOCIATION a_sales_product
+FOLDER = '/07 - associations'
+    ENDPOINT a_sales_product_source product (1)
+    DESCRIPTION = 'a_sales_product_source'
+    ENDPOINT a_sales_product_target sales (0,*)
+    DESCRIPTION = 'a_sales_product_target'
+    ADD MAPPING productid=productid;
+

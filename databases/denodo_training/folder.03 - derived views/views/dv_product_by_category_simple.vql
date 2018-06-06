@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_product_by_category_simple FOLDER = '/03 - derived views' AS SELECT bv_product_by_category.parameters AS parameters, bv_product_by_category.return AS return, input FROM bv_product_by_category WHERE (parameters).categoryname = input USING PARAMETERS ( input : text);
+
+ALTER VIEW dv_product_by_category_simple
+ LAYOUT (bv_product_by_category = [20, 20, 325, 65]);
+

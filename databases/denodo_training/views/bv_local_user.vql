@@ -1,0 +1,51 @@
+﻿CREATE OR REPLACE WRAPPER DF bv_local_user
+    DATASOURCENAME=ds_local_user
+    OUTPUTSCHEMA (
+        name = 'name' (OPT),
+        birthdate = 'birthdate' (OPT),
+        code = 'code' (OPT),
+        address = 'address' (OPT),
+        city = 'city' (OPT),
+        state = 'state' (OPT),
+        zipcode = 'zipcode' (OPT),
+        phone = 'phone' (OPT),
+        service = 'service' (OPT),
+        registration_date = 'registration_date' (OPT),
+        email = 'email' (OPT)
+    );
+
+CREATE OR REPLACE TABLE bv_local_user I18N us_pst (
+        name:text, 
+        birthdate:date, 
+        code:text, 
+        address:text, 
+        city:text, 
+        state:text, 
+        zipcode:text, 
+        phone:text, 
+        service:text, 
+        registration_date:date, 
+        email:text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_local_user(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD name (=,in) OPT ANY
+             ADD birthdate (=,in) OPT ANY
+             ADD code (=,in) OPT ANY
+             ADD address (=,in) OPT ANY
+             ADD city (=,in) OPT ANY
+             ADD state (=,in) OPT ANY
+             ADD zipcode (=,in) OPT ANY
+             ADD phone (=,in) OPT ANY
+             ADD service (=,in) OPT ANY
+             ADD registration_date (=,in) OPT ANY
+             ADD email (=,in) OPT ANY
+        )
+        OUTPUTLIST (address, birthdate, city, code, email, name, phone, registration_date, service, state, zipcode
+        )
+        WRAPPER (df bv_local_user)
+    );
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_interactions_customer FOLDER = '/03 - derived views' AS SELECT customer_code AS customer_code, nest(agent_id, interaction_date, case_id, interaction_phone, interaction_ip) AS interactions FROM dv_interactions GROUP BY customer_code;
+
+ALTER VIEW dv_interactions_customer
+ LAYOUT (dv_interactions = [20, 20, 210, 146]);
+

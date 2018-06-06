@@ -1,0 +1,26 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE ODBC ds_access_user2
+    FOLDER = '/01 - data sources'
+    DRIVERCLASSNAME = 'sun.jdbc.odbc.JdbcOdbcDriver'
+    DATABASEURI = '${databases.denodo_training.folder.01 - data sources.datasources.odbc.ds_access_user2.DATABASEURI}'
+    USERNAME = '${databases.denodo_training.folder.01 - data sources.datasources.odbc.ds_access_user2.USERNAME}'
+    USERPASSWORD = '${databases.denodo_training.folder.01 - data sources.datasources.odbc.ds_access_user2.USERPASSWORD}'
+    DATABASENAME = 'access'
+    DATABASEVERSION = '4'
+    FETCHSIZE = 1000
+    VALIDATIONQUERY = 'Select 1'
+    INITIALSIZE = 0
+    MAXIDLE = -1
+    MINIDLE = 0
+    MAXACTIVE = 0
+    EXHAUSTEDACTION = 1
+    TESTONBORROW = false
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = -1
+    NUMTESTPEREVICTION = 3
+    MINEVICTABLETIME = 1800000
+    POOLPREPAREDSTATEMENTS = false
+    MAXSLEEPINGPS = 4
+    INITIALCAPACITYPS = 8;
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_interactions FOLDER = '/03 - derived views' AS SELECT interaction_date, interaction_phone, customer_code, case_id, interaction_ip, agent_id FROM (SELECT customer_code, case_id, caller_phone AS interaction_phone, agent_id, date_call_received AS interaction_date FROM bv_cc_service_call UNION SELECT customer_ip AS interaction_ip, customer_code, global_case_id AS case_id, sr_date AS interaction_date, agent_id FROM bv_support_get_all_service_request) ORDER BY interaction_date DESC;
+
+ALTER VIEW dv_interactions
+ LAYOUT (bv_cc_service_call = [50, 179, 200, 225], bv_support_get_all_service_request = [350, 190, 200, 225]);
+

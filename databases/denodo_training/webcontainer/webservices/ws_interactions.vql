@@ -1,0 +1,4 @@
+﻿UNDEPLOY IF EXISTS WEBSERVICE ws_interactions;
+
+DEPLOY WEBSERVICE ws_interactions;
+

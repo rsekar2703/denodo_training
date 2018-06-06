@@ -1,0 +1,38 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC service_location
+    FOLDER = '/01 - data sources'
+    DATASOURCENAME=ds_phone
+    SCHEMANAME='${databases.denodo_training.folder.01 - data sources.views.jdbc.service_location.SCHEMANAME}' 
+    RELATIONNAME='service_location' ESCAPE
+    OUTPUTSCHEMA (
+        location_id = 'location_id' :'java.math.BigDecimal' (OPT) (sourcetyperadix='10', sourcetypename='NUMBER', sourcetypeid='3', sourcetypesize='22')  ESCAPE NOT NULL SORTABLE,
+        customer_id = 'customer_id' :'java.math.BigDecimal' (OPT) (sourcetyperadix='10', sourcetypename='NUMBER', sourcetypeid='3', sourcetypesize='22')  ESCAPE NOT NULL SORTABLE,
+        business_name = 'business_name' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='50')  ESCAPE NOT NULL SORTABLE,
+        service_location = 'service_location' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='50')  ESCAPE NOT NULL SORTABLE,
+        other_details = 'other_details' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='2500')  ESCAPE SORTABLE
+    );
+
+CREATE OR REPLACE TABLE service_location I18N us_pst (
+        location_id:decimal (sourcetyperadix = '10', sourcetypesize = '22', sourcetypeid = '3'), 
+        customer_id:decimal (sourcetyperadix = '10', sourcetypesize = '22', sourcetypeid = '3'), 
+        business_name:text (sourcetyperadix = '10', sourcetypesize = '50', sourcetypeid = '12'), 
+        service_location:text (sourcetyperadix = '10', sourcetypesize = '50', sourcetypeid = '12'), 
+        other_details:text (sourcetyperadix = '10', sourcetypesize = '2500', sourcetypeid = '12')
+    )
+    FOLDER = '/01 - data sources'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD service_location(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD location_id (any) OPT ANY
+             ADD customer_id (any) OPT ANY
+             ADD business_name (any) OPT ANY
+             ADD service_location (any) OPT ANY
+             ADD other_details (any) OPT ANY
+        )
+        OUTPUTLIST (business_name, customer_id, location_id, other_details, service_location
+        )
+        WRAPPER (jdbc service_location)
+    );
+

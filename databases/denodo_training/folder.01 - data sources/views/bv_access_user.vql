@@ -1,0 +1,58 @@
+﻿CREATE OR REPLACE WRAPPER ODBC bv_access_user
+    FOLDER = '/01 - data sources'
+    DATASOURCENAME=ds_access_user2
+    SCHEMANAME='DEN55EDU0105LAB01FILE00.mdb' 
+    RELATIONNAME='directory' 
+    OUTPUTSCHEMA (
+    name = 'name' :'java.lang.String' (OPT) (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='50')  SORTABLE,
+    age = 'age' :'java.lang.String' (OPT) (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='30')  SORTABLE,
+    address = 'address' :'java.lang.String' (OPT) (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='50')  SORTABLE,
+    city = 'city' :'java.lang.String' (OPT) (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='50')  SORTABLE,
+    phone = 'phone' :'java.lang.String' (OPT) (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='50')  SORTABLE,
+    service = 'service' :'java.lang.String' (OPT) (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='50')  SORTABLE,
+    email = 'email' :'java.lang.String' (OPT) (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='50')  SORTABLE,
+    birthdate = 'birthdate' :'java.sql.Timestamp' (OPT) (sourcetypename='DATETIME', sourcetypeid='93', sourcetypedecimals='0', sourcetypesize='19')  NOT SORTABLE,
+    state = 'state' :'java.lang.String' (OPT) (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+    zip = 'zip' :'java.lang.String' (OPT) (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='30')  SORTABLE,
+    joindate = 'joindate' :'java.sql.Timestamp' (OPT) (sourcetypename='DATETIME', sourcetypeid='93', sourcetypedecimals='0', sourcetypesize='19')  NOT SORTABLE,
+    code = 'code' :'java.lang.String' (OPT) (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='30')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_access_user I18N us_pst (
+        name:text (sourcetypesize = '50', sourcetypeid = '12'), 
+        age:text (sourcetypesize = '30', sourcetypeid = '12'), 
+        address:text (sourcetypesize = '50', sourcetypeid = '12'), 
+        city:text (sourcetypesize = '50', sourcetypeid = '12'), 
+        phone:text (sourcetypesize = '50', sourcetypeid = '12'), 
+        service:text (sourcetypesize = '50', sourcetypeid = '12'), 
+        email:text (sourcetypesize = '50', sourcetypeid = '12'), 
+        birthdate:date (sourcetypedecimals = '0', sourcetypesize = '19', sourcetypeid = '93'), 
+        state:text (sourcetypesize = '100', sourcetypeid = '12'), 
+        zip:text (sourcetypesize = '30', sourcetypeid = '12'), 
+        joindate:date (sourcetypedecimals = '0', sourcetypesize = '19', sourcetypeid = '93'), 
+        code:text (sourcetypesize = '30', sourcetypeid = '12')
+    )
+    FOLDER = '/01 - data sources'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_access_user(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD name (any) OPT ANY
+             ADD age (any) OPT ANY
+             ADD address (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD service (any) OPT ANY
+             ADD email (any) OPT ANY
+             ADD birthdate (any) OPT ANY
+             ADD state (any) OPT ANY
+             ADD zip (any) OPT ANY
+             ADD joindate (any) OPT ANY
+             ADD code (any) OPT ANY
+        )
+        OUTPUTLIST (address, age, birthdate, city, code, email, joindate, name, phone, service, state, zip
+        )
+        WRAPPER (odbc bv_access_user)
+    );
+

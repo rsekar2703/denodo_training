@@ -1,0 +1,46 @@
+﻿CREATE OR REPLACE WRAPPER JDBC bv_incident_by_status
+    FOLDER = '/01 - data sources'
+    DATASOURCENAME=ds_internet
+    SQLSENTENCE='select * from incident where status = ''@input_status'''   
+    OUTPUTSCHEMA (
+        id = 'id' :'java.lang.Long' (sourcetypename='BIGINT', sourcetypeid='-5', sourcetypedecimals='0', sourcetypesize='20')  NOT NULL SORTABLE NOT UPDATEABLE,
+        summary = 'summary' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        ttime = 'ttime' :'java.sql.Timestamp' (sourcetypename='TIMESTAMP', sourcetypeid='93', sourcetypedecimals='0', sourcetypesize='19')  NOT NULL SORTABLE NOT UPDATEABLE,
+        customer_code = 'customer_code' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='15')  SORTABLE NOT UPDATEABLE,
+        status = 'status' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        device = 'device' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        service = 'service' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        input_status = 'INPUT_STATUS' :'java.lang.String' (OBL) (DEFAULTVALUE='Open')  EXTERN SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_incident_by_status I18N us_pst (
+        id:long (sourcetypedecimals = '0', sourcetypesize = '20', sourcetypeid = '-5'), 
+        summary:text (sourcetypedecimals = '0', sourcetypesize = '100', sourcetypeid = '12'), 
+        ttime:date (sourcetypedecimals = '0', sourcetypesize = '19', sourcetypeid = '93'), 
+        customer_code:text (sourcetypedecimals = '0', sourcetypesize = '15', sourcetypeid = '12'), 
+        status:text (sourcetypedecimals = '0', sourcetypesize = '100', sourcetypeid = '12'), 
+        device:text (sourcetypedecimals = '0', sourcetypesize = '100', sourcetypeid = '12'), 
+        service:text (sourcetypedecimals = '0', sourcetypesize = '100', sourcetypeid = '12'), 
+        input_status:text (defaultvalue = 'Open')
+    )
+    FOLDER = '/01 - data sources'
+    PRIMARY KEY ( 'id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_incident_by_status(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id NOS ZERO ()
+             ADD summary NOS ZERO ()
+             ADD ttime NOS ZERO ()
+             ADD customer_code NOS ZERO ()
+             ADD status NOS ZERO ()
+             ADD device NOS ZERO ()
+             ADD service NOS ZERO ()
+             ADD input_status (=) OBL ONE
+        )
+        OUTPUTLIST (customer_code, device, id, service, status, summary, ttime
+        )
+        WRAPPER (jdbc bv_incident_by_status)
+    );
+

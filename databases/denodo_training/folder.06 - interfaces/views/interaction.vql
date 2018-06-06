@@ -1,0 +1,14 @@
+﻿CREATE OR REPLACE INTERFACE VIEW interaction (
+        customer_code:text,
+        agent_id:decimal,
+        interaction_date:date,
+        case_id:decimal,
+        interaction_phone:text,
+        interaction_ip:text
+    )
+    SET IMPLEMENTATION dv_interactions
+    FOLDER = '/06 - interfaces';
+
+ALTER VIEW interaction
+ LAYOUT (dv_interactions = [298, 104, 200, 146]);
+

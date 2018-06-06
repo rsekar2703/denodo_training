@@ -1,0 +1,45 @@
+﻿CREATE OR REPLACE WRAPPER LDAP bv_ad_user
+    FOLDER = '/02 - base views'
+    DATASOURCENAME=ds_active_directory
+    OBJECTCLASSES='person'
+    LDAPEXPRESSION='(&(objectClass=user)(objectClass=person)(!(objectClass=computer)))'   
+    RECURSIVESEARCH=TRUE
+    SINGLE-VALUE=FALSE
+    OUTPUTSCHEMA (
+        cn = 'cn' : 'java.lang.String',
+        givenname = 'givenName' : 'java.lang.String',
+        homedirectory = 'homeDirectory' : 'java.lang.String',
+        lastlogon = 'lastLogon' : 'java.lang.Long',
+        logoncount = 'logonCount' : 'java.lang.Integer',
+        samaccountname = 'sAMAccountName' : 'java.lang.String',
+        userprincipalname = 'userPrincipalName' : 'java.lang.String'
+    );
+
+CREATE OR REPLACE TABLE bv_ad_user I18N us_pst (
+        cn:text, 
+        givenname:text, 
+        homedirectory:text, 
+        lastlogon:long, 
+        logoncount:int, 
+        samaccountname:text, 
+        userprincipalname:text
+    )
+    FOLDER = '/02 - base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_ad_user(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD cn NOS ZERO ()
+             ADD givenname NOS ZERO ()
+             ADD homedirectory NOS ZERO ()
+             ADD lastlogon NOS ZERO ()
+             ADD logoncount NOS ZERO ()
+             ADD samaccountname NOS ZERO ()
+             ADD userprincipalname NOS ZERO ()
+        )
+        OUTPUTLIST (cn, givenname, homedirectory, lastlogon, logoncount, samaccountname, userprincipalname
+        )
+        WRAPPER (ldap bv_ad_user)
+    );
+

@@ -1,0 +1,31 @@
+﻿CREATE OR REPLACE WRAPPER WS getaveragemonthlyrevenue_bycode
+    FOLDER = '/01 - data sources'
+    DATASOURCENAME=ds_sale
+    SERVICENAME='RevenueProviderService'
+    PORTNAME='RevenueProvider'
+    OPERATIONNAME='getAverageMonthlyRevenueByCode'
+    INPUTMESSAGE='getAverageMonthlyRevenueByCodeRequest'
+    OUTPUTMESSAGE='getAverageMonthlyRevenueByCodeResponse'
+    OUTPUTSCHEMA (
+    in0='$$0' (OBL),
+    return='$$$$'
+    );
+
+CREATE OR REPLACE TABLE getaveragemonthlyrevenue_bycode I18N us_pst (
+        in0:text, 
+        return:float
+    )
+    FOLDER = '/01 - data sources'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD getaveragemonthlyrevenue_bycode(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD in0 (=) OBL ONE
+             ADD return NOS ZERO ()
+        )
+        OUTPUTLIST (in0, return
+        )
+        WRAPPER (ws getaveragemonthlyrevenue_bycode)
+    );
+

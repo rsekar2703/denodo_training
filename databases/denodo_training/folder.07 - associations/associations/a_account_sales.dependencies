@@ -1,0 +1,11 @@
+﻿/databases/denodo_training/folder.07 - associations/07 - associations.vql
+/databases/denodo_training/folder.06 - interfaces/06 - interfaces.vql
+/databases/denodo_training/folder.02 - base views/02 - base views.vql
+/extensions/jars/denodo-salesforce-rest-wrapper-6.0.vql
+/databases/denodo_training/folder.01 - data sources/01 - data sources.vql
+/databases/denodo_training/folder.01 - data sources/datasources/custom/ds_salesforce.vql
+/databases/denodo_training/folder.02 - base views/views/bv_sf_account.vql
+/databases/denodo_training/folder.06 - interfaces/views/account.vql
+/databases/denodo_training/folder.01 - data sources/datasources/json/ds_sales.vql
+/databases/denodo_training/folder.02 - base views/views/bv_sales_all.vql
+/databases/denodo_training/folder.06 - interfaces/views/sales.vql

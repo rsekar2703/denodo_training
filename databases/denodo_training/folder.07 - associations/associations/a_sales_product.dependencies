@@ -1,0 +1,10 @@
+﻿/databases/denodo_training/folder.07 - associations/07 - associations.vql
+/databases/denodo_training/folder.06 - interfaces/06 - interfaces.vql
+/databases/denodo_training/folder.02 - base views/02 - base views.vql
+/databases/denodo_training/folder.01 - data sources/01 - data sources.vql
+/databases/denodo_training/folder.01 - data sources/datasources/ws/ds_product.vql
+/databases/denodo_training/folder.02 - base views/views/bv_product.vql
+/databases/denodo_training/folder.06 - interfaces/views/product.vql
+/databases/denodo_training/folder.01 - data sources/datasources/json/ds_sales.vql
+/databases/denodo_training/folder.02 - base views/views/bv_sales_all.vql
+/databases/denodo_training/folder.06 - interfaces/views/sales.vql

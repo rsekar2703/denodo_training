@@ -1,0 +1,45 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_internet_incident
+    DATASOURCENAME=ds_internet
+    CATALOGNAME='${databases.denodo_training.views.jdbc.bv_internet_incident.CATALOGNAME}' 
+    RELATIONNAME='incident' 
+    OUTPUTSCHEMA (
+        id = 'id' :'java.lang.Long' (OPT) (sourcetyperadix='10', sourcetypename='BIGINT', sourcetypeid='-5', sourcetypedecimals='0', sourcetypesize='19')  NOT NULL SORTABLE,
+        summary = 'summary' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+        ttime = 'ttime' :'java.sql.Timestamp' (OPT) (sourcetyperadix='10', sourcetypename='TIMESTAMP', sourcetypeid='93', sourcetypesize='19')  NOT NULL SORTABLE,
+        customer_code = 'customer_code' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='15')  SORTABLE,
+        status = 'status' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+        device = 'device' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+        service = 'service' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  SORTABLE
+    )
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'id' )
+    INDEX 'PRIMARY' CLUSTER UNIQUE PRIMARY ( 'id' );
+
+CREATE OR REPLACE TABLE bv_internet_incident I18N us_pst (
+        id:long (sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19', sourcetypeid = '-5'), 
+        summary:text (sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12'), 
+        ttime:date (sourcetyperadix = '10', sourcetypesize = '19', sourcetypeid = '93'), 
+        customer_code:text (sourcetyperadix = '10', sourcetypesize = '15', sourcetypeid = '12'), 
+        status:text (sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12'), 
+        device:text (sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12'), 
+        service:text (sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12')
+    )
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_internet_incident(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD summary (any) OPT ANY
+             ADD ttime (any) OPT ANY
+             ADD customer_code (any) OPT ANY
+             ADD status (any) OPT ANY
+             ADD device (any) OPT ANY
+             ADD service (any) OPT ANY
+        )
+        OUTPUTLIST (customer_code, device, id, service, status, summary, ttime
+        )
+        WRAPPER (jdbc bv_internet_incident)
+    );
+
